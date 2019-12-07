@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Tutor Me</string>
+    <string-array name="Majors">
+        <item>Engineering</item>
+        <item>Computer Science</item>
+        <item>Biology</item>
+        <item>Business</item>
+        <item>Chemistry</item>
+        <item>English</item>
+        <item>History</item>
+        <item>Religious Studies</item>
+        <item>Nursing</item>
+        <item>Philosophy</item>
+    </string-array>
+
+    <string-array name="Year">
+        <item>Freshman</item>
+        <item>Sophomore</item>
+        <item>Junior</item>
+        <item>Senior</item>
+        <item>Graduate Student</item>
+        <item>Professor</item>
+    </string-array>
 </resources>

@@ -12,7 +12,7 @@
         android:layout_width="251dp"
         android:layout_height="205dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,21 +23,16 @@
         android:id="@+id/emailEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="@+id/nameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
@@ -49,7 +44,6 @@
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPersonName"
@@ -59,15 +53,45 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="269dp"
-        android:layout_height="55dp"
+        android:layout_width="272dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/capsule"
         android:text="Submit"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearSpinner" />
+
+    <Spinner
+        android:id="@+id/majorSpinner"
+        android:layout_width="222dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/confirmPasswordEditText"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <Spinner
+        android:id="@+id/yearSpinner"
+        android:layout_width="223dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/majorSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/majorSpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -125,19 +125,6 @@ public class LoginActivity extends AppCompatActivity {
                             .build();
                     db.setFirestoreSettings(settings);
 
-                    /*DocumentReference userRef = db.collection("Users")
-                            .document(user.getUid()); */
-
-                    /*userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "onComplete: successfully set the user client.");
-                                //User user = task.getResult().toObject(User.class);
-                                //((UserClient) (getApplicationContext())).setUser(user);
-                            }
-                        }
-                    }); */
                 }
             }
         };

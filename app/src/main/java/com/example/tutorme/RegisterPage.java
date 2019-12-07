@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -30,9 +32,8 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
         //widgets
         private EditText mEmail, mPassword, mConfirmPassword;
-        private ProgressBar mProgressBar;
 
-        //vars
+
         private FirebaseFirestore mDb;
 
 
@@ -43,6 +44,23 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         mEmail = (EditText) findViewById(R.id.emailEditText);
         mPassword = (EditText) findViewById(R.id.passwordEditText);
         mConfirmPassword = (EditText) findViewById(R.id.confirmPasswordEditText);
+
+        final Spinner majorSpinner = (Spinner)findViewById(R.id.majorSpinner);
+        final Spinner yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
+
+
+        ArrayAdapter<String> majorAdapter = new ArrayAdapter<String>(RegisterPage.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Majors));
+
+        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        majorSpinner.setAdapter(majorAdapter);
+
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(RegisterPage.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Year));
+
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(yearAdapter);
+        ;
 
         findViewById(R.id.submitButton).setOnClickListener(this);
 
