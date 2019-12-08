@@ -4,12 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TutorActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingBottom="8dp"
+        android:text="Available Tutors"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="9"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="0dp" />
 </LinearLayout>

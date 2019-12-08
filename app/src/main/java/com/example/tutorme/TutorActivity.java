@@ -3,7 +3,10 @@ package com.example.tutorme;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,6 +36,24 @@ public class TutorActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         usersDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                final User tempUser = (User)listView.getItemAtPosition(i);
+
+                Intent intent = new Intent(TutorActivity.this, ViewProfileActivity.class);
+
+                intent.putExtra("Name", tempUser.getName());
+                intent.putExtra("Year", tempUser.getYear());
+                intent.putExtra("Major", tempUser.getMajor());
+                intent.putExtra("ID", tempUser.getUser_id());
+
+                startActivity(intent);
+
+            }
+        });
+
         userList = new ArrayList<>();
     }
 
@@ -48,7 +69,11 @@ public class TutorActivity extends AppCompatActivity {
                 for(DataSnapshot userSnapshot: dataSnapshot.getChildren()){
                     User user = userSnapshot.getValue(User.class);
 
-                    userList.add(user);
+                    if (user != null && user.isAvailable)
+                    {
+                        userList.add(user);
+                    }
+
                 }
 
                 UsersList adapter = new UsersList(TutorActivity.this, userList);

@@ -61,7 +61,7 @@
         android:background="@drawable/capsule"
         android:drawableTop="@drawable/ic_account_circle_black_24dp"
         android:gravity="clip_horizontal|center"
-        android:text="View My Profile"
+        android:text="Edit My Profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inboxButton" />
