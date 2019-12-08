@@ -173,7 +173,8 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                                 mEmail.getText().toString(),
                                 FirebaseAuth.getInstance().getUid(),
                                 majorSpinner.getSelectedItem().toString(),
-                                yearSpinner.getSelectedItem().toString());
+                                yearSpinner.getSelectedItem().toString(),
+                                true);
 
                         dbRef.push().setValue(newUser);
 

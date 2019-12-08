@@ -6,6 +6,7 @@ public class User {
     public String user_id;
     public String major;
     public String year;
+    boolean isAvailable;
 
     public User() {
         // DVC
@@ -13,12 +14,13 @@ public class User {
 
     // EVC
 
-    public User(String name, String email, String user_id, String major, String year) {
+    public User(String name, String email, String user_id, String major, String year, boolean isAvailable) {
         this.name = name;
         this.email = email;
         this.user_id = user_id;
         this.major = major;
         this.year = year;
+        this.isAvailable = isAvailable;
     }
 
     public String getName() {
@@ -59,5 +61,13 @@ public class User {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }
