@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/findTutorsButton"
-        android:layout_width="332dp"
-        android:layout_height="83dp"
+        android:layout_width="375dp"
+        android:layout_height="75dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="359dp"
@@ -39,8 +39,8 @@
 
     <Button
         android:id="@+id/inboxButton"
-        android:layout_width="317dp"
-        android:layout_height="74dp"
+        android:layout_width="375dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -53,13 +53,14 @@
 
     <Button
         android:id="@+id/profileButton"
-        android:layout_width="315dp"
-        android:layout_height="81dp"
+        android:layout_width="375dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/capsule"
         android:drawableTop="@drawable/ic_account_circle_black_24dp"
+        android:gravity="clip_horizontal|center"
         android:text="View My Profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

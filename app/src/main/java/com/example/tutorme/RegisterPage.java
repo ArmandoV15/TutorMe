@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -31,7 +33,9 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         private static final String TAG = "RegisterActivity";
 
         //widgets
-        private EditText mEmail, mPassword, mConfirmPassword;
+        private EditText mEmail, mPassword, mConfirmPassword, mName;
+        Spinner majorSpinner, yearSpinner;
+        DatabaseReference dbRef;
 
 
         private FirebaseFirestore mDb;
@@ -44,9 +48,11 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         mEmail = (EditText) findViewById(R.id.emailEditText);
         mPassword = (EditText) findViewById(R.id.passwordEditText);
         mConfirmPassword = (EditText) findViewById(R.id.confirmPasswordEditText);
+        mName = (EditText) findViewById(R.id.nameEditText);
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        final Spinner majorSpinner = (Spinner)findViewById(R.id.majorSpinner);
-        final Spinner yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
+        majorSpinner = (Spinner)findViewById(R.id.majorSpinner);
+        yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
 
 
         ArrayAdapter<String> majorAdapter = new ArrayAdapter<String>(RegisterPage.this,
@@ -161,8 +167,19 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     if(doStringsMatch(mPassword.getText().toString(), mConfirmPassword.getText().toString())){
 
                         //Initiate registration task
+
+                        // Add the user to the realtime database
+                        User newUser = new User(mName.getText().toString(),
+                                mEmail.getText().toString(),
+                                FirebaseAuth.getInstance().getUid(),
+                                majorSpinner.getSelectedItem().toString(),
+                                yearSpinner.getSelectedItem().toString());
+
+                        dbRef.push().setValue(newUser);
+
                         registerNewEmail(mEmail.getText().toString(), mPassword.getText().toString());
                         finishActivity(RESULT_OK);
+                        finish();
                     }else{
                         Toast.makeText(RegisterPage.this, "Passwords do not Match", Toast.LENGTH_SHORT).show();
                     }

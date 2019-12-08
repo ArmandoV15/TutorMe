@@ -13,7 +13,6 @@ public class User {
 
     // EVC
 
-
     public User(String name, String email, String user_id, String major, String year) {
         this.name = name;
         this.email = email;
