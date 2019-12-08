@@ -23,7 +23,7 @@ public class ViewMyProfile extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users").child();
+        //mDatabase = FirebaseDatabase.getInstance().getReference("Users").child();
 
 
         myNameEditText = (EditText) findViewById(R.id.myNameEditText);
