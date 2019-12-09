@@ -28,11 +28,11 @@ public class Message {
         this.textMessage = textMessage;
     }
 
-    public String getUserName() {
+    public String getSender() {
         return sender;
     }
 
-    public void setUserName(String userName) {
+    public void setSender(String userName) {
         this.sender = sender;
     }
 

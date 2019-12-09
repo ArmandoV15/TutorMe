@@ -4,13 +4,8 @@
     android:layout_width="match_parent"
     android:padding="8dp"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_alignParentEnd="true"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"/>
     <TextView
-        android:id="@+id/showMessage"
+        android:id="@+id/sentMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
