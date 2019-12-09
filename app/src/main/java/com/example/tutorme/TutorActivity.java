@@ -1,3 +1,13 @@
+/**
+ * The purpose of this activity is to display in a ListView all of the tutors that are available
+ * and allow you to click on their name in order to contact them. The way that this works is that
+ * a for loop will step through every part of the Firebase database, and if the user has their
+ * preferences set to show that they are available, they will show up online.
+ * In order to achieve this, I referenced this youtube video:
+ * https://www.youtube.com/watch?v=jEmq1B1gveM&t=453s
+ */
+
+
 package com.example.tutorme;
 
 import androidx.annotation.NonNull;
@@ -67,6 +77,8 @@ public class TutorActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
 
+                // step through each member of the database and if the user wants to appear online,
+                // add them to the listview
                 for(DataSnapshot userSnapshot: dataSnapshot.getChildren()){
                     User user = userSnapshot.getValue(User.class);
 
@@ -74,7 +86,6 @@ public class TutorActivity extends AppCompatActivity {
                     {
                         userList.add(user);
                     }
-
                 }
 
                 UsersList adapter = new UsersList(TutorActivity.this, userList);
