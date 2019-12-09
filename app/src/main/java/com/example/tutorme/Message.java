@@ -2,15 +2,22 @@ package com.example.tutorme;
 
 public class Message {
     private String textMessage;
-    private String userName;
+    private String sender;
+    private String receiver;
 
     public Message(){
 
     }
 
-    public Message(String textMessage, String userName){
+    public Message(String sender, String receiver, String textMessage){
         this.textMessage = textMessage;
-        this.userName = userName;
+        this.sender = sender;
+        this.receiver = receiver;
+    }
+
+    @Override
+    public String toString() {
+        return textMessage;
     }
 
     public String getTextMessage() {
@@ -22,11 +29,19 @@ public class Message {
     }
 
     public String getUserName() {
-        return userName;
+        return sender;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.sender = sender;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 }
 

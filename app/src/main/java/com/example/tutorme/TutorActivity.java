@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,7 +49,7 @@ public class TutorActivity extends AppCompatActivity {
                 intent.putExtra("Year", tempUser.getYear());
                 intent.putExtra("Major", tempUser.getMajor());
                 intent.putExtra("ID", tempUser.getUser_id());
-
+                Log.d("HELLO", "ID: " + tempUser.getUser_id());
                 startActivity(intent);
 
             }

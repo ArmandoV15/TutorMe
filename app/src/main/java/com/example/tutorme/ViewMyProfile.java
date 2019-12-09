@@ -2,7 +2,10 @@ package com.example.tutorme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -14,7 +17,9 @@ public class ViewMyProfile extends AppCompatActivity {
 
     private EditText myNameEditText, myEmailEditText, myMajorEditText, myYearEditText;
     private Switch availableSwitch;
+    private Button messageButton;
     private FirebaseDatabase mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class ViewMyProfile extends AppCompatActivity {
         myMajorEditText = (EditText) findViewById(R.id.myMajorEditText);
         myYearEditText = (EditText) findViewById(R.id.yearEditText);
         availableSwitch = (Switch) findViewById(R.id.availableSwitch);
+
+
 
 
 
