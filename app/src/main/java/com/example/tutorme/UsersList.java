@@ -1,3 +1,8 @@
+/**
+ * This is our custom array class that we use in TutorActivity.
+ * It displays two textviews one below the other
+ */
+
 package com.example.tutorme;
 
 import android.app.Activity;
