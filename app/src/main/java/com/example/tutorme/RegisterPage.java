@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import static android.text.TextUtils.isEmpty;
+import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
 public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
 
@@ -84,35 +85,48 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         public void registerNewEmail(final String email, String password){
 
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+        getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                         if (task.isSuccessful()){
-                            Log.d(TAG, "onComplete: AuthState: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            Log.d(TAG, "onComplete: AuthState: " + getInstance().getCurrentUser().getUid());
 
                             //insert some default data
+                            final String uid = getInstance().getUid();
                             User user = new User();
                             user.setEmail(email);
                             user.setName(email.substring(0, email.indexOf("@")));
-                            user.setUser_id(FirebaseAuth.getInstance().getUid());
+                            user.setUser_id(uid);
 
                             FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                                     .setTimestampsInSnapshotsEnabled(true)
                                     .build();
                             mDb.setFirestoreSettings(settings);
 
+
                             DocumentReference newUserRef = mDb
                                     .collection("Users")
-                                    .document(FirebaseAuth.getInstance().getUid());
+                                    .document(uid);
 
                             newUserRef.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if(task.isSuccessful()){
+                                        // Add the user to the realtime database
+                                        User newUser = new User(mName.getText().toString(),
+                                                mEmail.getText().toString(),
+                                                uid,
+                                                majorSpinner.getSelectedItem().toString(),
+                                                yearSpinner.getSelectedItem().toString(),
+                                                true);
+
+                                        dbRef.push().setValue(newUser);
+
+
                                         redirectLoginScreen();
                                     }else{
                                         View parentLayout = findViewById(android.R.id.content);
@@ -167,17 +181,6 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     if(doStringsMatch(mPassword.getText().toString(), mConfirmPassword.getText().toString())){
 
                         //Initiate registration task
-
-                        // Add the user to the realtime database
-                        User newUser = new User(mName.getText().toString(),
-                                mEmail.getText().toString(),
-                                FirebaseAuth.getInstance().getUid(),
-                                majorSpinner.getSelectedItem().toString(),
-                                yearSpinner.getSelectedItem().toString(),
-                                true);
-
-                        dbRef.push().setValue(newUser);
-
                         registerNewEmail(mEmail.getText().toString(), mPassword.getText().toString());
                         finishActivity(RESULT_OK);
                         finish();
