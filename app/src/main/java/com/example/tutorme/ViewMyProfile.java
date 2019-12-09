@@ -5,10 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
-import android.util.Log;
->>>>>>> 5bd86eef8fc67f31d4f9c84ce67bbe5b2f0403e3
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;

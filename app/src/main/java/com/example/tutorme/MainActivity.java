@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         inboxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MessagingActivity.class);
+                Intent intent = new Intent(MainActivity.this, ViewMessages.class);
                 startActivity(intent);
             }
         });
