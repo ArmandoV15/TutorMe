@@ -68,10 +68,46 @@ public class MessagingActivity extends AppCompatActivity {
             }
         });
 
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(receiverID);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                readMessages(senderID, receiverID);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
         private void sendMessage (String sender, String receiver, String message){
             reference = FirebaseDatabase.getInstance().getReference();
             Message chatMessage = new Message(sender, receiver, message);
             reference.child("Chats").push().setValue(chatMessage);
+        }
+
+        private void readMessages(final String senderID, final String receiveID){
+            reference = FirebaseDatabase.getInstance().getReference("Chats");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    chatMessageList.clear();
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Message message = snapshot.getValue(Message.class);
+                            if (message.getReceiver().equals(senderID) && message.getSender().equals(receiveID)||
+                                    message.getReceiver().equals(receiveID) && message.getSender().equals(senderID)) {
+                                chatMessageList.add(message);
+                            }
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
