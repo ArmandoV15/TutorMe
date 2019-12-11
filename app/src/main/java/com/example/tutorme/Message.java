@@ -32,7 +32,7 @@ public class Message {
         return sender;
     }
 
-    public void setSender(String userName) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
