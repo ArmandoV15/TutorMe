@@ -64,7 +64,6 @@ public class TutorActivity extends AppCompatActivity {
 
             }
         });
-
         userList = new ArrayList<>();
     }
 
