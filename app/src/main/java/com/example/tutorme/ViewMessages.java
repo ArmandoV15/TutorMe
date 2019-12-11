@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ViewMessages extends AppCompatActivity {
 
-    DatabaseReference dbRef;
+    DatabaseReference dbRef, name;
     ListView listView;
     List<Message> conversationsList;
 
@@ -33,6 +33,8 @@ public class ViewMessages extends AppCompatActivity {
         conversationsList = new ArrayList<>();
         listView = (ListView) findViewById(R.id.messagesList);
         dbRef = FirebaseDatabase.getInstance().getReference("Chats");
+        name = FirebaseDatabase.getInstance().getReference("Users");
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,7 +46,6 @@ public class ViewMessages extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     protected void onStart() {
