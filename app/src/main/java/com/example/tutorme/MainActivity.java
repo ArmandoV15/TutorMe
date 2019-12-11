@@ -1,3 +1,7 @@
+/**
+ * This activity serves as the main menu for our app. All it contains is 4 buttons
+ * that reroute you to other sections of the application
+ */
 package com.example.tutorme;
 
 import androidx.appcompat.app.AppCompatActivity;

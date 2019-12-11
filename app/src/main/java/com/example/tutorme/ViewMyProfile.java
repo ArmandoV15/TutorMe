@@ -62,7 +62,6 @@ public class ViewMyProfile extends AppCompatActivity {
                         myMajorEditText.setText(user.getMajor());
                         myYearEditText.setText(user.getYear());
                         parent = userSnapshot.getKey();
-                        Toast.makeText(ViewMyProfile.this, parent, Toast.LENGTH_SHORT).show();
                     }
 
                 }
