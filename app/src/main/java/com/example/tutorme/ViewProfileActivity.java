@@ -34,9 +34,9 @@ public class ViewProfileActivity extends AppCompatActivity {
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(ViewProfileActivity.this, MessagingActivity.class);
-                intent2.putExtra("ID", userId);
-                startActivity(intent2);
+                Intent intent = new Intent(ViewProfileActivity.this, MessagingActivity.class);
+                intent.putExtra("ID", userId);
+                startActivity(intent);
             }
         });
 

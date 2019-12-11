@@ -39,8 +39,10 @@ public class MessagingActivity extends AppCompatActivity {
 
         Button send = findViewById(R.id.sendButton);
         final EditText message = findViewById(R.id.editText);
+
         Intent intent = getIntent();
-        final String receiverId = intent.getStringExtra("ID");
+        final String receiverID= intent.getStringExtra("ID");
+        final String senderID = user.getUid();
 
         listView = (ListView) findViewById(R.id.listView);
         chatMessageList = new ArrayList<>();
@@ -56,8 +58,8 @@ public class MessagingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 msg = message.getText().toString();
                 if (!msg.equals("")) {
-                    sendMessage(user.getUid(), receiverId, msg);
-                    chatMessageList.add(new Message(user.getUid(), receiverId, msg));
+                    sendMessage(senderID, receiverID, msg);
+                    chatMessageList.add(new Message(senderID, receiverID, msg));
                     arrayAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(MessagingActivity.this, "Enter a message", Toast.LENGTH_SHORT).show();
@@ -65,35 +67,11 @@ public class MessagingActivity extends AppCompatActivity {
                 message.setText("");
             }
         });
+
     }
         private void sendMessage (String sender, String receiver, String message){
             reference = FirebaseDatabase.getInstance().getReference();
             Message chatMessage = new Message(sender, receiver, message);
             reference.child("Chats").push().setValue(chatMessage);
-        }
-
-        private void readMessages(final String senderID, final String receiveID){
-            chatMessageList = new ArrayList<>();
-
-            reference = FirebaseDatabase.getInstance().getReference("Chats");
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    chatMessageList.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Message message = snapshot.getValue(Message.class);
-                        if(message.getReceiver().equals(senderID) && message.getSender().equals(receiveID) ||
-                            message.getReceiver().equals(receiveID) && message.getSender().equals(senderID)){
-                            chatMessageList.add(message);
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
         }
     }
