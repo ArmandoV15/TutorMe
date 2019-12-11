@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Button seeTutorsBtn = (Button) findViewById(R.id.findTutorsButton);
         Button inboxBtn = (Button) findViewById(R.id.inboxButton);
         Button profileBtn = (Button) findViewById(R.id.profileButton);
+        Button logoutBtn = (Button) findViewById(R.id.logoutButton);
 
         seeTutorsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ViewMyProfile.class);
                 startActivity(intent);
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
             }
         });
 
