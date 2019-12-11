@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +40,10 @@ public class ViewMessages extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final Message message = (Message)listView.getItemAtPosition(i);
 
-                Toast.makeText(ViewMessages.this, message.getSender(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ViewMessages.this,MessagingActivity.class);
+                String uid = FirebaseAuth.getInstance().getUid();
+                intent.putExtra("ID", uid);
+                startActivity(intent);
             }
         });
 

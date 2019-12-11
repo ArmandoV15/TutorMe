@@ -55,7 +55,7 @@ public class ConversationList extends ArrayAdapter<Message> {
 
                     if (message.getSender().equals(user.getUser_id()))
                     {
-                        nameTextView.setText(user.getName());
+                        nameTextView.setText("Sent From: " + user.getName());
                     }
                 }
             }
