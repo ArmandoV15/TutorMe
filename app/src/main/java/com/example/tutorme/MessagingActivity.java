@@ -44,6 +44,9 @@ public class MessagingActivity extends AppCompatActivity {
         final String receiverID= intent.getStringExtra("ID");
         final String senderID = user.getUid();
 
+        /**
+         arrayAdapter used to display messages sent in the listView of this activity
+         */
         listView = (ListView) findViewById(R.id.listView);
         chatMessageList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<Message>(
@@ -53,6 +56,10 @@ public class MessagingActivity extends AppCompatActivity {
         );
         listView.setAdapter(arrayAdapter);
 
+        /**
+         onClickListener used to send the message typed in the editText too another user while also storing it in Firebase.
+         Also does a check to make sure the user is not sending an empty message.
+         */
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,28 +75,40 @@ public class MessagingActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         This override method is used to update the messages that are able to be read as users send them to one another.
+         */
         reference = FirebaseDatabase.getInstance().getReference("Users").child(receiverID);
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 readMessages(senderID, receiverID);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
+
+    /**
+     Method used inside send buttons onClickListener to send the message to a specific user
+     * @param sender The current senders ID
+     * @param receiver The receivers ID
+     * @param message The contents of the message
+     */
         private void sendMessage (String sender, String receiver, String message){
             reference = FirebaseDatabase.getInstance().getReference();
             Message chatMessage = new Message(sender, receiver, message);
             reference.child("Chats").push().setValue(chatMessage);
         }
 
-        private void readMessages(final String senderID, final String receiveID){
+    /**
+     This is the method used the the addValueEventListener that allows new messages to be readable for both users
+     * @param senderID ID of the sender
+     * @param receiveID ID of the receiver
+     */
+    private void readMessages(final String senderID, final String receiveID){
             reference = FirebaseDatabase.getInstance().getReference("Chats");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override

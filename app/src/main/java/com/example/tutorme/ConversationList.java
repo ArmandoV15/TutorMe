@@ -31,6 +31,14 @@ public class ConversationList extends ArrayAdapter<Message> {
         this.userList = userList;
     }
 
+    /**
+     This get view method is used to make a custom listView adapter for our viewMessages activity to be able to display
+     the sent message with the sender below that message.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
@@ -46,6 +54,9 @@ public class ConversationList extends ArrayAdapter<Message> {
 
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
 
+        /**
+         This override method allows us to get the teh sender of the most recent message and display it.
+         */
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -66,13 +77,10 @@ public class ConversationList extends ArrayAdapter<Message> {
 
             }
         });
-
-
-
-
+        /**
+         sets the messageTextView to the most recent message sent in the messages activity
+         */
         messageTextView.setText(message.getTextMessage());
-
-
 
         return listViewItem;
     }

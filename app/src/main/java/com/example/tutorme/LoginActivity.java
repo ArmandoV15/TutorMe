@@ -66,11 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-
 
     @Override
     public void onStart() {
@@ -80,6 +76,12 @@ public class LoginActivity extends AppCompatActivity {
        // updateUI(currentUser);
     }
 
+    /**
+     Allows returning registered users to sign in while performing the necessary checks to
+     make sure they are in fact a registered user.
+     * @param email Register email in Firebase
+     * @param password registered password in Firebase
+     */
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
@@ -130,6 +132,11 @@ public class LoginActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     Method used in signIn method to check if the current email and password entered is
+     registered in the data base
+     * @return the boolean returned to determine id the user is registered
+     */
     private boolean validateForm() {
         boolean valid = true;
 
@@ -152,6 +159,10 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
+    /**
+     Method used to take you from the login screen to the main menu if your email and password a verified
+     * @param user object of Firebase used to check that there is a user in teh database
+     */
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);

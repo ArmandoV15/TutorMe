@@ -24,6 +24,13 @@ public class UsersList extends ArrayAdapter<User> {
         this.userList = userList;
     }
 
+    /**
+     getView function that allows us to display users in a list view with their school year bellow them.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();

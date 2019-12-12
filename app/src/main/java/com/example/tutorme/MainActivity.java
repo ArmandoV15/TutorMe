@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Button profileBtn = (Button) findViewById(R.id.profileButton);
         Button logoutBtn = (Button) findViewById(R.id.logoutButton);
 
+        /**
+         onClickListener used to take you form the main activity to our tutor list
+         that displays our current list of tutors.
+         */
         seeTutorsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         onClickListener used to take you form the main activity to our viewMessages activity
+         where you can view the messages you have sent.
+         */
         inboxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         onClickListener used to take you form the main activity to our viewMyProfileActivity where you can view your personal account details and
+         also edit those details.
+         */
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         onClickListener used to sign you out of your account and take you back ato the sign in page.
+         */
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +82,5 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
-
-
 }

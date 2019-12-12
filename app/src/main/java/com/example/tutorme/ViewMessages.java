@@ -36,7 +36,9 @@ public class ViewMessages extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference("Chats");
         name = FirebaseDatabase.getInstance().getReference("Users");
 
-
+        /**
+         This listView onClickListener is used to take the user to the messaging app when they press on a message they want to reply too.
+         */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -51,6 +53,10 @@ public class ViewMessages extends AppCompatActivity {
 
     }
 
+    /**
+     This is where we keep the messages updated int he listView as user send them
+     back and forth.
+     */
     @Override
     protected void onStart() {
         super.onStart();

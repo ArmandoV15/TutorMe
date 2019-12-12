@@ -67,6 +67,10 @@ public class TutorActivity extends AppCompatActivity {
         userList = new ArrayList<>();
     }
 
+    /**
+     This override onStart function is used to add all available users to the list view in out tutorList when the user enters the activity from
+     the mainActivity.
+     */
     @Override
     protected void onStart() {
         super.onStart();

@@ -166,6 +166,11 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         return s1.equals(s2);
     }
 
+    /**
+     onClick listener for the register button which takes all the entered fields and enters them into our Firebase real time database.
+     Also does checks for password match and makes sure all fields are filled.
+     * @param view
+     */
         @Override
         public void onClick(View view) {
         switch (view.getId()){
